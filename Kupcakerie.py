@@ -4,17 +4,19 @@ from kivy.lang import Builder
 from kivy.utils import platform                                                                 
 from kivy.uix.widget import Widget                                                              
 from kivy.clock import Clock                                                                    
-from jnius import autoclass                                                                     
-from android.runnable import run_on_ui_thread                                                   
+from jnius import autoclass
+from android.runnable import run_on_ui_thread
+                                                  
                                                                                                 
 WebView = autoclass('android.webkit.WebView')                                                   
 WebViewClient = autoclass('android.webkit.WebViewClient')                                       
 activity = autoclass('org.renpy.android.PythonActivity').mActivity                              
                                                                                                 
 class Wv(Widget):                                                                               
-    def __init__(self, **kwargs):                                                               
-        super(Wv, self).__init__(**kwargs)          a                                            
-        Clock.schedule_once(self.create_webview, 0)                                             
+    def __init__(self,**kwargs):
+        super(Wv,self).__init__(**kwargs)
+        Clock.schedule_once(self.create_webview, 0) 
+
                                                                                                 
     @run_on_ui_thread                                                                           
     def create_webview(self, *args):                                                            
